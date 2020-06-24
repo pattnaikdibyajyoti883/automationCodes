@@ -1,0 +1,33 @@
+package automationProject;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class AmazonDemo {
+
+	public static void main(String[] args) 
+	{
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Dibyajyothi\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
+		driver.get("https://www.amazon.in/");
+		driver.manage().window().maximize();
+		WebElement search = driver.findElement(By.id("twotabsearchtextbox"));
+		search.sendKeys("iphone");
+		Select sel = new Select(search);
+		List<WebElement> option = sel.getOptions();
+		for (WebElement wb : option) 
+		{
+			String select = wb.getText();
+			System.out.println(select);
+		}
+
+	}
+
+}
